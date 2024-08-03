@@ -7,9 +7,10 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(fruits, id: \.self) { fruit in
+                ForEach(fruits.indices, id: \.self) { index in
+                    let fruit = fruits[index]
                     HStack {
-                        if fruit == "りんご" || fruit == "バナナ" {
+                        if index == 1 || index == 3 {
                             checkMark.foregroundColor(.orange)
                         } else {
                             checkMark
