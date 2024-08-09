@@ -1,22 +1,25 @@
 import SwiftUI
 
-let fruits = ["りんご", "みかん", "バナナ", "パイナップル"]
 let checkMark = Image(systemName: "checkmark")
+let fruits: [(name: String, isSelected: Bool)] = [
+    (name: "りんご", isSelected: false),
+    (name: "みかん", isSelected: true),
+    (name: "バナナ", isSelected: false),
+    (name: "パイナップル", isSelected: true)
+]
 
 struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(fruits.indices, id: \.self) { index in
-                    let fruit = fruits[index]
+                ForEach(fruits, id: \.name) { fruit in
                     HStack {
-                        if index == 1 || index == 3 {
+                        if fruit.isSelected {
                             checkMark.foregroundColor(.orange)
                         } else {
-                            checkMark
-                                .hidden()
+                            checkMark.hidden()
                         }
-                        Text(fruit)
+                        Text(fruit.name)
                     }
                 }
                 .toolbarBackground(.visible, for: .navigationBar)
